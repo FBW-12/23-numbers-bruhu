@@ -1,6 +1,5 @@
 {
   "name": "numbers-api",
-  "autor": "Bru <annabru.abh@gmail.com">,
   "version": "0.1.0",
   "private": true,
   "dependencies": {
