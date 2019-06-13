@@ -10,7 +10,7 @@ import {
 // define an initial state
 const initialState = {
   fetching: false,
-  dog: null,
+  data: null,
   error: null
 };
 
