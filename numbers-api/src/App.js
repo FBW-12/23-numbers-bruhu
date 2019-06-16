@@ -5,32 +5,58 @@ import "./App.css";
 // import React bindings for Redux
 import { connect } from "react-redux";
 
+const App = props => {
+  // Destructuring assignment from Props
+  const { fetching, data, onRequestNumber, error } = props;
 
+  //useRef hook
+  const numRef = useRef(null);
+  //Dan Says -> https://twitter.com/dan_abramov/status/1011238901254639616
 
-const App = (props) => {
-  render() {
-    // Destructuring assignment from Props
-    const { fetching, data, onRequestNumber, error } = props;
-    
-    //useRef hook
-    const numRef = useRef(null);
-    //Dan Says -> https://twitter.com/dan_abramov/status/1011238901254639616
-
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Numbers API</h1>
-          {data && <blockquote>{data}</blockquote>}
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1 className="App-title">Numbers API</h1>
+        {data && <blockquote>{data}</blockquote>}
+        <div>
+          <p>Insert a number</p>
           <input type="text" defaultValue="666" ref={numRef} type="number" />
-          <button type="submit" onClick={onRequestNumber(numRef.current.value)}>
+        </div>
+        {fetching ? (
+          <button className="btn btn-success">Fetching...</button>
+        ) : (
+          <button
+            className="btn btn-primary"
+            type="submit"
+            onClick={() => onRequestNumber(numRef.current.value)}
+          >
             Show info about this number
           </button>
-        </header>
-      </div>
-    );
-  }
-}
+        )}
+        {error && <p style={{ color: "red" }}>Uh oh - something went wrong!</p>}
+        <p className="credits">
+          Powered by{" "}
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="http://numbersapi.com"
+          >
+            NumbersAPI
+          </a>{" "}
+          without{" "}
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://github.com/FBW-12/numbers-api-proxy"
+          >
+            CORS
+          </a>
+        </p>
+      </header>
+    </div>
+  );
+};
 
 // Extracting Data with mapStateToProps
 const mapStateToProps = state => {
