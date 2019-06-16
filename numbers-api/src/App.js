@@ -14,14 +14,15 @@ const App = (props) => {
     
     //useRef hook
     const numRef = useRef(null);
+    //Dan Says -> https://twitter.com/dan_abramov/status/1011238901254639616
 
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo rounded-circle" alt="logo" />
+          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Numbers API</h1>
           {data && <blockquote>{data}</blockquote>}
-          <input type="text" defaultValue="Insert number here" />
+          <input type="text" defaultValue="666" ref={numRef} type="number" />
           <button type="submit" onClick={onRequestNumber(numRef.current.value)}>
             Show info about this number
           </button>
