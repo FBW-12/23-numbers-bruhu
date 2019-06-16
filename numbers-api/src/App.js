@@ -23,10 +23,10 @@ const App = props => {
           <input className="number-input" defaultValue="666" ref={numRef} type="number" />
         </div>
         {fetching ? (
-          <button className="btn btn-success submit-btn">Fetching...</button>
+          <button className="btn btn-success submit-btn">Loading...</button>
         ) : (
           <button
-            className="btn btn-primary submit-btn"
+            className="btn btn-dark submit-btn"
             type="submit"
             onClick={() => onRequestNumber(numRef.current.value)}
           >
