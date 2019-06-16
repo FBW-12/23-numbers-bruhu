@@ -18,9 +18,9 @@ const App = props => {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1 className="App-title">Numbers API</h1>
-        {data && <blockquote>{data}</blockquote>}
+        {data && <blockquote>{data}</blockquote> || <p>Insert a number</p>}
         <div>
-          <p>Insert a number</p>
+          
           <input type="text" defaultValue="666" ref={numRef} type="number" />
         </div>
         {fetching ? (
