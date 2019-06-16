@@ -1,4 +1,4 @@
-import React, { Component, useRef } from "react";
+import React, { useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -71,6 +71,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onRequestNumber: num => {
       console.log(num);
+
       return dispatch({ type: "API_CALL_REQUEST", number: num });
     }
   };

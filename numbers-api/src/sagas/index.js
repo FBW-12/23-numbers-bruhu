@@ -13,10 +13,10 @@ export function* watcherSaga() {
 }
 
 // function that makes the api request and returns a Promise for response
-function fetchData() {
+function fetchData(num) {
   return axios({
     method: "get",
-    url: "https://numbers-api-proxy.dci-fbw121.now.sh/?number={num}"
+    url: `https://numbers-api-proxy.dci-fbw121.now.sh/?number=${num}`
   });
 }
 
