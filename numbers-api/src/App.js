@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Button } from "react-bootstrap";
+
 // import React bindings for Redux
 import { connect } from "react-redux";
 
@@ -18,16 +18,15 @@ const App = props => {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1 className="App-title">Numbers API</h1>
-        {data && <blockquote>{data}</blockquote> || <p>Insert a number</p>}
+        {(data && <blockquote>{data}</blockquote>) || <p>Insert a number</p>}
         <div>
-          
-          <input type="text" defaultValue="666" ref={numRef} type="number" />
+          <input className="number-input" defaultValue="666" ref={numRef} type="number" />
         </div>
         {fetching ? (
-          <button className="btn btn-success">Fetching...</button>
+          <button className="btn btn-success submit-btn">Fetching...</button>
         ) : (
           <button
-            className="btn btn-primary"
+            className="btn btn-primary submit-btn"
             type="submit"
             onClick={() => onRequestNumber(numRef.current.value)}
           >
