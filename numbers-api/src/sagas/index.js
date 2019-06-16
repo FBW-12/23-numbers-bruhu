@@ -16,21 +16,22 @@ export function* watcherSaga() {
 function fetchData() {
   return axios({
     method: "get",
-    url: "https://numbers-api-proxy.dci-fbw121.now.sh/?number=666"
+    url: "https://numbers-api-proxy.dci-fbw121.now.sh/?number={num}"
   });
 }
 
 // worker saga: makes the api call when watcher saga sees the action
-function* workerSaga() {
+function* workerSaga(action) {
+  console.log(action.number);
   try {
-    const response = yield call(fetchData);
+    const response = yield call(fetchData, action.number);
     const data = response.data;
-    console.log(data)
+    console.log(data);
 
     // dispatch a success action to the store with the new data
     yield put({ type: API_CALL_SUCCESS, data });
   } catch (error) {
-    // dispatch a failure action to the store with the error
+    // dispatch a failure action to the store with the error}
     yield put({ type: API_CALL_FAILURE, error });
   }
 }

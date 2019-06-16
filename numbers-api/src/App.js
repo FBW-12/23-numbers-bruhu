@@ -1,25 +1,30 @@
-import React, { Component } from "react";
+import React, { Component, useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
 // import React bindings for Redux
 import { connect } from "react-redux";
-import { API_CALL_REQUEST } from "./actions/actionTypes";
 
-class App extends Component {
+
+
+const App = (props) => {
   render() {
     // Destructuring assignment from Props
-    const { fetching, data, onRequestNumber, error } = this.props;
+    const { fetching, data, onRequestNumber, error } = props;
+    
+    //useRef hook
+    const numRef = useRef(null);
 
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo rounded-circle" alt="logo" />
           <h1 className="App-title">Numbers API</h1>
-{data && <blockquote>{data}</blockquote>}
-          
+          {data && <blockquote>{data}</blockquote>}
           <input type="text" defaultValue="Insert number here" />
-          <button type="submit" onClick={onRequestNumber}>Show info about this number</button>
+          <button type="submit" onClick={onRequestNumber(numRef.current.value)}>
+            Show info about this number
+          </button>
         </header>
       </div>
     );
@@ -35,10 +40,12 @@ const mapStateToProps = state => {
   };
 };
 
-// Dispatching actions with mapDispatchToProps
 const mapDispatchToProps = dispatch => {
   return {
-    onRequestNumber: () => dispatch({ type: API_CALL_REQUEST })
+    onRequestNumber: num => {
+      console.log(num);
+      return dispatch({ type: "API_CALL_REQUEST", number: num });
+    }
   };
 };
 
